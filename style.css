@@ -70,7 +70,8 @@ a {
   text-decoration: none;
 }
 
-.nav__btn {
+.nav__btn,
+.btn__open-account {
   background-color: var(--color-primary);
   font-size: 1rem;
   padding: 0.6rem 0.6rem;
@@ -304,9 +305,6 @@ button:focus {
   padding: 1.5rem 2rem 2rem 1.5rem;
 }
 
-.operations__content--1 {
-}
-
 .operations__content--2 {
   display: none;
 }
@@ -469,7 +467,62 @@ button:focus {
   transition: all 0.5s;
 }
 
-@media (max-width: 600px) {
+.section--sign-up {
+  background-color: #37383d;
+  border-top: none;
+  border-bottom: 1px solid #444;
+  text-align: center;
+  padding: 5rem;
+}
+
+.section--sign-up .section__title {
+  margin-bottom: 2rem;
+}
+
+.section--sign-up .section__header {
+  color: #fff;
+}
+
+.btn__open-account {
+  padding: 1rem 2rem;
+  font-weight: 600;
+}
+
+.footer {
+  background-color: #37383d;
+  color: #fff;
+  text-align: center;
+  padding: 4rem;
+}
+
+.footer__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.footer__logo {
+  display: block;
+  margin: 1rem auto;
+  height: 3rem;
+}
+
+.footer__copyright {
+  font-size: 1rem;
+  color: #aaa;
+}
+
+.footer__link {
+  color: #fff;
+}
+
+@media (min-width: 700px) {
+  .footer__nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1rem;
+  }
 }
 
 @media (min-width: 1200px) {
