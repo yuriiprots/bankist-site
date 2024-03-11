@@ -1,4 +1,6 @@
 :root {
+  --background-color: #f3f3f3;
+  --text-color: #444;
   --color-primary: #5ec576;
   --color-secondary: #ffcb03;
   --color-tertiary: #ff585f;
@@ -24,28 +26,36 @@ html {
 }
 
 body {
-  background-color: #f3f3f3;
-  color: #444;
-  font-weight: 400;
+  background-color: var(--background-color);
+  color: var(--text-color);
+
   font-family: "Poppins", sans-serif;
+  font-weight: 400;
   line-height: 1.9;
 }
 
+/*-----------------HEADER-----------------*/
+
 .header {
+  height: 100vh;
+  padding: 0 0.7rem;
+
   display: flex;
-  justify-content: space-between;
-  align-items: center;
   flex-direction: column;
-  gap: 2rem 0;
-  padding: 2rem 2rem;
+  align-items: center;
 }
 
 .header__top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  font-size: 1.1rem;
+  padding: 0 0.5rem;
+
+  height: 6rem;
   width: 100%;
-  height: 5rem;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
 }
 
 .logo {
@@ -59,30 +69,30 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 0 0.7rem;
-}
-
-ul {
   list-style: none;
 }
 
-a {
+.nav__link {
+  font-size: 1.2rem;
   color: inherit;
   text-decoration: none;
 }
 
-.nav__btn,
-.btn__open-account {
+.nav__btn {
+  font-size: 1.2rem;
   background-color: var(--color-primary);
-  font-size: 1rem;
   padding: 0.6rem 0.6rem;
   border: none;
   border-radius: 2rem;
 }
 
 .header__content {
+  padding: 0 2rem; /*6rem 12rem*/
+  flex: 1;
+  max-width: 115rem;
+
   display: grid;
   grid-template-columns: 5fr 1fr;
-  grid-template-rows: repeat(3, 1fr);
   grid-row-gap: 1rem;
 
   align-content: center;
@@ -93,12 +103,13 @@ a {
 
 .title {
   font-size: 3rem;
-  font-weight: 500;
-  line-height: 1.2;
+  font-weight: 600;
+  line-height: 1.4;
+
   grid-column: 1;
   grid-row: 1;
+
   z-index: 1;
-  line-height: 1.4;
 }
 
 .highlight {
@@ -122,61 +133,72 @@ a {
 .header__img {
   width: 100%;
   grid-column: 1 / span 2;
-  grid-row: 1 / span 3;
+  grid-row: 2 / span 4;
 }
 
-h4 {
-  font-size: 1.1rem;
+.header__content-text {
+  font-size: 1.6rem;
   grid-column: 1;
-  grid-row: 2;
+  grid-row: 6;
 }
 
 .btn__scroll-to {
-  grid-column: 1;
-  grid-row: 3;
-  z-index: 1;
-  align-self: end;
-  display: block;
   background: none;
-  font-size: 1.2rem;
-  font-weight: 500;
   color: var(--color-primary);
+  font-size: 1.4rem;
+  font-weight: 500;
+  cursor: pointer;
+
+  padding-bottom: 2px;
+
   border: 0;
   border-bottom: 1px solid currentColor;
-  padding-bottom: 2px;
-  cursor: pointer;
+
+  display: block;
+
   transition: all 0.3s;
+
+  align-self: end;
+  grid-column: 1;
+  grid-row: 7;
 }
 
+/*-----------------SECTIONS-----------------*/
+
 .section {
-  padding: 2rem 2rem;
+  padding: 5rem 1.5rem; /*10rem 2rem , 15rem 3rem*/
   border-top: 1px solid #ddd;
 }
 
 .section__title {
   max-width: 40rem;
-  margin: 0 auto 3rem auto;
+  margin: 0 auto 3rem auto; /*6rem 8rem*/
+}
+
+.section__title--testimonials {
+  margin-bottom: 2rem;
 }
 
 .section__description {
-  font-size: 1.2rem;
+  font-size: 1.4rem; /*1.6rem 1.8rem*/
   font-weight: 600;
   text-transform: uppercase;
   color: var(--color-primary);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.5rem; /*1rem ...*/
 }
 
 .section__header {
-  font-size: 2rem;
-  line-height: 1.2;
+  font-size: 2rem; /*3rem 4rem*/
   font-weight: 500;
+  line-height: 1.2;
 }
 
+/*------------------FEATURES------------------*/
 .features {
+  margin: 0 2rem; /*6rem 12rem*/
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;
-  margin: 0 2rem;
+  grid-template-columns: 1fr; /*1fr 1fr*/
+  gap: 2rem; /*3rem 4rem*/
 }
 
 .features__img {
@@ -186,14 +208,31 @@ h4 {
 .features__feature {
   display: grid;
   grid-template-columns: 2fr 1fr;
+  row-gap: 1rem; /*2rem 3rem*/
+
   align-self: center;
   justify-self: center;
-  width: 70%;
-  font-size: 1.5rem;
+  width: 80%;
+}
+
+.features__header {
+  font-size: 1.6rem; /*1.8rem 2rem*/
+
+  grid-column: 1;
+  grid-row: 1;
+
+  align-self: center;
+  justify-self: center;
 }
 
 .features__icon {
-  grid-row: 1;
+  background-color: var(--color-primary-opacity);
+
+  height: 3.5rem; /*4.5rem 5.5rem*/
+  width: 3.5rem; /*4.5rem 5.5rem*/
+
+  border-radius: 50%;
+
   grid-column: 2;
   align-self: center;
   justify-self: center;
@@ -201,39 +240,25 @@ h4 {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--color-primary-opacity);
-  height: 5.5rem;
-  width: 5.5rem;
-  border-radius: 50%;
-  margin-bottom: 2rem;
 }
 
 .features__icon svg {
-  height: 2.5rem;
-  width: 2.5rem;
   fill: var(--color-primary);
+  height: 2rem; /*2rem 2.5rem*/
+  width: 2rem; /*2rem 2.5rem*/
 }
 
-.features__header {
-  grid-column: 1;
-  grid-row: 1;
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-  align-self: center;
-  justify-self: center;
-}
-
-p {
-  grid-column: 1 / span 2;
-  grid-row: 2;
+.features__text {
   color: #666;
-  font-size: 1.1rem;
+  font-size: 1.2rem; /*1.4rem 1.6rem*/
+  grid-column: 1 / span 2;
 }
 
+/*-----------------OPERATIONS-----------------*/
 .operations {
-  max-width: 80rem;
-  margin: 6rem auto 0 auto;
   background-color: #fff;
+  max-width: 80rem; /*90rem 100rem*/
+  margin: 6rem auto 0 auto; /*8rem 12rem*/
 }
 
 .operations__tab-container {
@@ -245,10 +270,10 @@ p {
 .btn {
   display: inline-block;
   background-color: var(--color-primary);
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: 500;
   text-align: center;
-  padding: 0.7rem 0.7rem;
+  padding: 0.7rem 1.2rem;
   border-radius: 2rem;
   border: none;
   cursor: pointer;
@@ -288,21 +313,21 @@ p {
 }
 
 .operations__tab span {
-  margin-right: 0.2rem;
+  margin-right: 0.5rem;
   font-weight: 600;
   display: inline-block;
 }
 
-button:focus {
-  outline: none;
+.operations__content--active {
+  display: grid;
+  grid-template-columns: 3rem 1fr; /*5rem 7rem*/
+  column-gap: 1rem; /*2rem 3rem*/
+  row-gap: 0.2rem; /*0.3rem 0.5rem*/
 }
 
 .operations__content {
-  display: grid;
-  grid-template-columns: 3rem 1fr;
-  column-gap: 1rem;
-  row-gap: 0.2rem;
-  padding: 1.5rem 2rem 2rem 1.5rem;
+  font-size: 1.2rem; /*1.4rem 1.6rem*/
+  padding: 1.5rem 2.5rem 4.5rem 3rem; /*2rem 3rem 5.5rem 4rem | 2.5rem 7rem 6.5rem 7rem*/
 }
 
 .operations__content--2 {
@@ -322,14 +347,14 @@ button:focus {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 3rem;
-  width: 3rem;
+  height: 3.5rem;
+  width: 3.5rem;
   border-radius: 50%;
 }
 
 .operations__icon svg {
-  height: 1.5rem;
-  width: 1.5rem;
+  height: 2rem;
+  width: 2rem;
 }
 
 .operations__icon--1 {
@@ -348,19 +373,20 @@ button:focus {
 }
 
 .operations__header {
-  font-size: 1rem;
+  font-size: 1.4rem;
   font-weight: 500;
   align-self: center;
 }
 
-.operations__content p {
+.operations__text {
   grid-column: 2;
-  font-size: 0.9rem;
+  font-size: 1.2rem;
 }
 
+/*-------------------SLIDER--------------------*/
 .slider {
-  max-width: 60rem;
-  height: 35rem;
+  max-width: 80rem;
+  height: 40rem;
   margin: 0 auto;
   position: relative;
   overflow: hidden;
@@ -369,7 +395,7 @@ button:focus {
   position: absolute;
   top: 0;
   width: 100%;
-  height: 35rem;
+  height: 40rem; /*... 50rem*/
   display: flex;
   align-items: center;
   justify-content: center;
@@ -383,49 +409,52 @@ button:focus {
 .testimonial::before {
   content: "\201C";
   position: absolute;
-  top: -2.3rem;
-  left: -3rem;
+  top: -3rem;
+  left: -4rem;
   line-height: 1;
-  font-size: 8rem;
+  font-size: 10rem; /*16rem 22rem*/
   font-family: inherit;
   color: var(--color-primary);
   z-index: -1;
 }
 
 .testimonials__header {
-  font-size: 1.25rem;
+  font-size: 1.4rem; /*1.6rem 1.8rem*/
   font-weight: 500;
   margin-bottom: 1rem;
 }
 .testimonials__text {
-  font-size: 1rem;
+  font-size: 1.2rem; /*1.4rem 1.6rem*/
   margin-bottom: 1.5rem;
   color: #666;
 }
+
 .testimonials__author {
-  margin-left: 1.5rem;
+  margin-left: 1.5rem; /*2rem 3rem*/
   font-style: normal;
   display: grid;
-  grid-template-columns: 3.5rem 1fr;
-  column-gap: 1rem;
+  grid-template-columns: 3.5rem 1fr; /*4.5rem 6.5rem*/
+  column-gap: 2rem; /*... 2rem*/
 }
+
 .testimonials__photo {
   grid-row: 1 / span 2;
-  width: 3.5rem;
+  width: 4.5rem; /*4.5rem 6.5rem*/
   border-radius: 50%;
 }
 
 .testimonials__name {
   grid-column: 2 / -1;
-  font-size: 1rem;
+  font-size: 1.3rem; /*1.5rem 1.7rem*/
   font-weight: 500;
   align-self: end;
   margin: 0;
 }
 .testimonials__location {
   grid-column: 2 / -1;
-  font-size: 0.75rem;
+  font-size: 1rem; /*1.2rem 1.4rem*/
 }
+
 .slider__btn {
   position: absolute;
   top: 50%;
@@ -434,49 +463,55 @@ button:focus {
   background: rgba(255, 255, 255, 0.7);
   font-family: inherit;
   color: #333;
-  height: 3rem;
-  width: 3rem;
-  font-size: 1.5rem;
+  height: 4rem;
+  width: 4rem;
+  font-size: 2.2rem;
   cursor: pointer;
   border-radius: 50%;
 }
 .slider__btn--left {
-  left: 6%;
+  left: 8%;
   transform: translate(-50%, -50%);
 }
 .slider__btn--right {
-  right: 6%;
+  right: 8%;
   transform: translate(50%, -50%);
 }
 .dots {
   position: absolute;
-  bottom: 5%;
+  bottom: 1%;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
+  gap: 0 1rem;
 }
+
 .dots__dot {
   border: none;
   background-color: #b9b9b9;
   opacity: 0.7;
-  height: 0.4rem;
-  width: 0.4rem;
+  height: 0.8rem;
+  width: 0.8rem;
   border-radius: 50%;
-  margin-right: 1rem;
   cursor: pointer;
   transition: all 0.5s;
 }
 
+.dots__dot--active {
+  background-color: #888;
+}
+
+/*---------------SIGN UP SECTION----------------*/
 .section--sign-up {
   background-color: #37383d;
+  text-align: center;
   border-top: none;
   border-bottom: 1px solid #444;
-  text-align: center;
-  padding: 5rem;
+  padding: 5rem 1.5rem;
 }
 
 .section--sign-up .section__title {
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 }
 
 .section--sign-up .section__header {
@@ -484,21 +519,27 @@ button:focus {
 }
 
 .btn__open-account {
-  padding: 1rem 2rem;
-  font-weight: 600;
+  padding: 1rem 3rem;
 }
 
+/*---------------FOOTER---------------*/
 .footer {
   background-color: #37383d;
-  color: #fff;
   text-align: center;
-  padding: 4rem;
+  padding: 5rem 1rem;
 }
 
 .footer__nav {
+  list-style: none;
   display: flex;
   flex-direction: column;
   gap: 1rem;
+}
+
+.footer__link {
+  font-size: 1.2rem;
+  color: #fff;
+  text-decoration: none;
 }
 
 .footer__logo {
@@ -508,46 +549,331 @@ button:focus {
 }
 
 .footer__copyright {
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: #aaa;
 }
 
-.footer__link {
-  color: #fff;
-}
-
-@media (min-width: 700px) {
-  .footer__nav {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 1rem;
+/* ----------------TABLET SCREEN----------------------*/
+@media (min-width: 600px) {
+  /*-----------------HEADER----------------------*/
+  .header {
+    padding: 0 2rem;
   }
-}
 
-@media (min-width: 1200px) {
   .header__top {
-    width: 100%;
+    font-size: 1.6rem;
+    padding: 0 3rem;
+
+    height: 7rem;
   }
 
   .logo {
-    height: 3rem;
-    width: auto;
+    height: 4rem;
   }
 
   .nav__list {
     gap: 0 2rem;
   }
 
-  .nav__btn {
-    font-size: 1rem;
-    padding: 0.6rem 0.6rem;
-    border-radius: 2rem;
+  .nav__link {
+    font-size: 1.4rem;
   }
 
+  .nav__btn,
+  .btn__open-account {
+    font-size: 1.4rem;
+    padding: 1.2rem 1.5rem;
+  }
+
+  .header__content {
+    grid-template-columns: 3fr 2fr;
+    row-gap: 3rem;
+  }
+
+  .title {
+    font-size: 4rem;
+  }
+
+  .header__img {
+    width: 100%;
+    grid-column: 2 / 3;
+    grid-row: 1 / span 4;
+    transform: translateY(-3rem);
+  }
+
+  .header__content-text {
+    font-size: 1.8rem;
+    grid-row: 2;
+  }
+
+  .btn__scroll-to {
+    font-size: 1.6rem;
+    grid-row: 3;
+  }
+
+  /*-----------------SECTIONS-----------------*/
+
   .section {
-    padding: 10rem 3rem;
-    border-top: 1px solid #ddd;
+    padding: 10rem 2rem;
+  }
+
+  .section__title {
+    max-width: 60rem;
+    margin: 0 auto 6rem auto;
+  }
+
+  .section__title--testimonials {
+    margin-bottom: 3rem;
+  }
+
+  .section__description {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+  }
+
+  .section__header {
+    font-size: 3rem;
+  }
+
+  /*-----------------FEATURES----------------------*/
+
+  .features {
+    margin: 0 6rem;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+
+  .features__feature {
+    grid-template-columns: 1fr;
+    row-gap: 0.5rem;
+    width: 80%;
+  }
+
+  #features_img--2 {
+    grid-row: 2;
+    grid-column: 2;
+  }
+
+  #features_feature--2 {
+    grid-row: 2;
+    grid-column: 1;
+  }
+
+  .features__header {
+    font-size: 1.8rem;
+    grid-row: 2;
+    justify-self: start;
+  }
+
+  .features__img {
+    align-self: center;
+  }
+
+  .features__icon {
+    height: 4.5rem;
+    width: 4.5rem;
+    grid-column: 1;
+    justify-self: start;
+  }
+
+  .features__icon svg {
+    height: 2.5rem;
+    width: 2.5rem;
+  }
+
+  .features__text {
+    font-size: 1.4rem;
+  }
+
+  /*-----------------OPERATIONS-----------------*/
+  .operations {
+    max-width: 90rem;
+    margin: 8rem auto 0 auto;
+  }
+
+  .operations__tab-container {
+    gap: 0 1.5rem;
+  }
+
+  .btn {
+    font-size: 1.4rem;
+    padding: 1rem 3rem;
+  }
+
+  .operations__tab span {
+    margin-right: 1rem;
+  }
+
+  .operations__content--active {
+    grid-template-columns: 5rem 1fr;
+    column-gap: 1rem;
+    row-gap: 0.3rem;
+  }
+
+  .operations__content {
+    padding: 2rem 3rem 5.5rem 4rem;
+  }
+
+  .operations__icon {
+    height: 4rem;
+    width: 4rem;
+  }
+
+  .operations__icon svg {
+    height: 2.5rem;
+    width: 2.5rem;
+  }
+
+  .operations__header {
+    font-size: 1.8rem;
+  }
+
+  .operations__text {
+    font-size: 1.4rem;
+  }
+
+  /*-----------------SLIDER-----------------*/
+  .slider {
+    max-width: 90rem;
+    height: 40rem;
+  }
+
+  .slide {
+    height: 40rem;
+  }
+
+  .testimonial::before {
+    top: -5rem;
+    left: -5.5rem;
+    font-size: 15rem;
+  }
+
+  .testimonials__header {
+    font-size: 1.6rem;
+  }
+
+  .testimonials__text {
+    font-size: 1.4rem;
+  }
+
+  .testimonials__author {
+    margin-left: 2rem;
+    grid-template-columns: 4.5rem 1fr;
+  }
+
+  .testimonials__photo {
+    width: 5.5rem;
+  }
+
+  .testimonials__name {
+    font-size: 1.5rem;
+  }
+
+  .testimonials__location {
+    font-size: 1.2rem;
+  }
+
+  .slider__btn {
+    height: 5rem;
+    width: 5rem;
+    font-size: 2.5rem;
+  }
+
+  .dots {
+    bottom: 5%;
+  }
+
+  /*---------------SIGN UP SECTION----------------*/
+  .section--sign-up {
+    padding: 7rem 2rem;
+  }
+
+  .section--sign-up .section__title {
+    margin-bottom: 4rem;
+  }
+
+  .btn__open-account {
+    font-size: 1.8rem;
+    padding: 2rem 4rem;
+    border-radius: 8rem;
+  }
+
+  /*-----------------FOOTER----------------------*/
+
+  .footer__nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 2rem;
+  }
+
+  .footer__link,
+  .footer__copyright {
+    font-size: 1.4rem;
+  }
+
+  .footer__logo {
+    margin: 1.5rem auto;
+    height: 4rem;
+  }
+}
+
+/*-----------------DESKTOP SCREEN ----------------------*/
+
+@media (min-width: 1024px) {
+  /*-----------------HEADER----------------------*/
+  .header {
+    padding: 0 3rem;
+  }
+
+  .header__top {
+    font-size: 1.8rem;
+    padding: 0 6rem;
+    height: 9rem;
+  }
+
+  .logo {
+    height: 4.5rem;
+  }
+
+  .nav__list {
+    gap: 0 4rem;
+  }
+
+  .nav__link,
+  .nav__btn {
+    font-size: 1.7rem;
+  }
+
+  .header__content {
+    grid-template-columns: 3fr 2fr;
+  }
+
+  .title {
+    font-size: 5.5rem;
+  }
+
+  .header__img {
+    width: 100%;
+    grid-column: 2 / span 2;
+    grid-row: 1 / span 4;
+    transform: translateY(-6rem);
+  }
+
+  .header__content-text {
+    font-size: 2.4rem;
+    grid-row: 2;
+  }
+
+  .btn__scroll-to {
+    font-size: 1.8rem;
+    grid-row: 3;
+  }
+
+  /*-----------------SECTIONS-----------------*/
+
+  .section {
+    padding: 15rem 3rem;
   }
 
   .section__title {
@@ -555,54 +881,156 @@ button:focus {
     margin: 0 auto 8rem auto;
   }
 
+  .section__title--testimonials {
+    margin-bottom: 4rem;
+  }
+
   .section__description {
-    font-size: 1.2rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    color: var(--color-primary);
-    margin-bottom: 1rem;
+    font-size: 1.8rem; /*1.6rem 1.8rem*/
   }
+
   .section__header {
-    font-size: 2.5rem;
-    line-height: 1.3;
-    font-weight: 500;
+    font-size: 4rem; /*3rem 4rem*/
   }
+
+  /*-----------------FEATURES----------------------*/
 
   .features {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
     margin: 0 12rem;
+    gap: 4rem;
   }
 
-  .features__img {
-    width: 100%;
-  }
   .features__feature {
-    align-self: center;
-    justify-self: center;
-    width: 70%;
-    font-size: 1.5rem;
-  }
-  .features__icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--color-primary-opacity);
-    height: 5.5rem;
-    width: 5.5rem;
-    border-radius: 50%;
-    margin-bottom: 2rem;
-  }
-
-  .features__icon svg {
-    height: 2.5rem;
-    width: 2.5rem;
-    fill: var(--color-primary);
+    row-gap: 2rem;
   }
 
   .features__header {
     font-size: 2rem;
-    margin-bottom: 1rem;
+  }
+
+  .features__icon {
+    height: 5.5rem;
+    width: 5.5rem;
+  }
+
+  .features__text {
+    font-size: 1.6rem;
+  }
+
+  /*-----------------OPERATIONS-----------------*/
+  .operations {
+    max-width: 100rem;
+    margin: 12rem auto 0 auto;
+  }
+
+  .operations__tab-container {
+    gap: 0 2rem;
+  }
+
+  .btn {
+    font-size: 1.6rem;
+    padding: 1.25rem 4.25rem;
+  }
+
+  .operations__content--active {
+    grid-template-columns: 7rem 1fr;
+    row-gap: 0.5rem;
+  }
+
+  .operations__content {
+    padding: 2.5rem 7rem 6.5rem 7rem;
+  }
+
+  .operations__icon {
+    height: 7rem;
+    width: 7rem;
+  }
+
+  .operations__icon svg {
+    height: 3rem;
+    width: 3rem;
+  }
+
+  .operations__header {
+    font-size: 2.2rem;
+  }
+
+  .operations__text {
+    font-size: 1.6rem;
+  }
+
+  /*-----------------SLIDER-----------------*/
+  .slider {
+    max-width: 100rem;
+    height: 50rem;
+  }
+  .slide {
+    height: 50rem;
+  }
+
+  .testimonial::before {
+    top: -7.3rem;
+    left: -8rem;
+    font-size: 22rem;
+  }
+
+  .testimonials__header {
+    font-size: 2.2rem;
+  }
+  .testimonials__text {
+    font-size: 1.6rem;
+  }
+
+  .testimonials__author {
+    margin-left: 3rem;
+    grid-template-columns: 6.5rem 1fr;
+  }
+
+  .testimonials__photo {
+    width: 6.5rem;
+  }
+
+  .testimonials__name {
+    font-size: 1.8rem;
+  }
+
+  .testimonials__location {
+    font-size: 1.4rem;
+  }
+
+  .slider__btn {
+    height: 5.5rem;
+    width: 5.5rem;
+    font-size: 3.25rem;
+  }
+
+  /*---------------SIGN UP SECTION----------------*/
+  .section--sign-up {
+    padding: 10rem 3rem;
+  }
+
+  .section--sign-up .section__title {
+    margin-bottom: 5rem;
+  }
+
+  .btn__open-account {
+    font-size: 1.9rem;
+    padding: 2rem 5rem;
+  }
+
+  /*-----------------FOOTER----------------------*/
+
+  .footer__nav {
+    gap: 4rem;
+  }
+
+  .footer__link,
+  .footer__copyright {
+    font-size: 1.6rem;
+  }
+
+  .footer__logo {
+    margin: 2rem auto;
+    height: 5rem;
   }
 }

@@ -37,7 +37,9 @@
           <span class="highlight">minimalist</span>
         </h1>
         <img src="images/header-img.png" alt="" class="header__img" />
-        <h4>A simpler banking experience for a simpler life.</h4>
+        <h4 class="header__content-text">
+          A simpler banking experience for a simpler life.
+        </h4>
         <button class="btn__scroll-to">Learn more ↓</button>
       </div>
     </header>
@@ -60,21 +62,26 @@
             </svg>
           </div>
           <h5 class="features__header">100% digital bank</h5>
-          <p>
+          <p class="features__text">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde alias
             sint quos? Accusantium a fugiat porro reiciendis saepe quibusdam
             debitis ducimus.
           </p>
         </div>
-        <img src="images/grow.jpg" alt="Plant" class="features__img" />
-        <div class="features__feature">
+        <img
+          src="images/grow.jpg"
+          alt="Plant"
+          class="features__img"
+          id="features_img--2"
+        />
+        <div class="features__feature" id="features_feature--2">
           <div class="features__icon">
             <svg>
               <use xlink:href="images/icons.svg#icon-trending-up"></use>
             </svg>
           </div>
           <h5 class="features__header">Watch your money grow</h5>
-          <p>
+          <p class="features__text">
             Nesciunt quos autem dolorum voluptates cum dolores dicta fuga
             inventore ab? Nulla incidunt eius numquam sequi iste pariatur
             quibusdam!
@@ -89,7 +96,7 @@
             </svg>
           </div>
           <h5 class="features__header">Free debit card included</h5>
-          <p>
+          <p class="features__text">
             Quasi, fugit in cumque cupiditate reprehenderit debitis animi enim
             eveniet consequatur odit quam quos possimus assumenda dicta fuga
             inventore ab.
@@ -120,7 +127,9 @@
           </button>
         </div>
 
-        <div class="operations__content operations__content--1">
+        <div
+          class="operations__content operations__content--1 operations__content--active"
+        >
           <div class="operations__icon operations__icon--1">
             <svg>
               <use xlink:href="images/icons.svg#icon-upload"></use>
@@ -129,7 +138,7 @@
           <h5 class="operations__header">
             Transfer money to anyone, instantly! No fees, no BS.
           </h5>
-          <p>
+          <p class="operations__text">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
             ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -146,7 +155,7 @@
           <h5 class="operations__header">
             Buy a home or make your dreams come true, with instant loans.
           </h5>
-          <p>
+          <p class="operations__text">
             Duis aute irure dolor in reprehenderit in voluptate velit esse
             cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
             cupidatat non proident, sunt in culpa qui officia deserunt mollit
@@ -163,7 +172,7 @@
           <h5 class="operations__header">
             No longer need your account? No problem! Close it instantly.
           </h5>
-          <p>
+          <p class="operations__text">
             Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
             officia deserunt mollit anim id est laborum. Ut enim ad minim
             veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
@@ -174,7 +183,7 @@
     </section>
 
     <section class="section section--3">
-      <div class="section__title">
+      <div class="section__title section__title--testimonials">
         <h2 class="section__description">No sure yet?</h2>
         <h3 class="section__header">
           Millions of Bankists are already making their life simpler.
@@ -208,7 +217,7 @@
         <button class="slider__btn slider__btn--right">→</button>
 
         <div class="dots">
-          <button class="dots__dot"></button>
+          <button class="dots__dot dots__dot--active"></button>
           <button class="dots__dot"></button>
           <button class="dots__dot"></button>
         </div>
@@ -222,23 +231,35 @@
           today!
         </h3>
       </div>
-      <button class="btn__open-account">Open your free account today!</button>
+      <button class="btn btn__open-account">Open your free account today!</button>
     </section>
 
     <footer class="footer">
       <ul class="footer__nav">
-        <li class="footer__item"><a href="#">About</a></li>
-        <li class="footer__item"><a href="#">Pricing</a></li>
-        <li class="footer__item"><a href="#">Terms of Use</a></li>
-        <li class="footer__item"><a href="#">Privacy Policy</a></li>
-        <li class="footer__item"><a href="#">Careers</a></li>
-        <li class="footer__item"><a href="#">Blog</a></li>
-        <li class="footer__item"><a href="#">Contact Us</a></li>
+        <li class="footer__item"><a href="#" class="footer__link">About</a></li>
+        <li class="footer__item">
+          <a href="#" class="footer__link">Pricing</a>
+        </li>
+        <li class="footer__item">
+          <a href="#" class="footer__link">Terms of Use</a>
+        </li>
+        <li class="footer__item">
+          <a href="#" class="footer__link">Privacy Policy</a>
+        </li>
+        <li class="footer__item">
+          <a href="#" class="footer__link">Careers</a>
+        </li>
+        <li class="footer__item"><a href="#" class="footer__link">Blog</a></li>
+        <li class="footer__item">
+          <a href="#" class="footer__link">Contact Us</a>
+        </li>
       </ul>
-      <img src="images/icon.png" alt="logo" class="footer__logo"/>
+      <img src="images/icon.png" alt="logo" class="footer__logo" />
       <p class="footer__copyright">
-        © Copyright by <a href="https://twitter.com/jonasschmedtman" class="footer__link">Jonas Schmedtmann</a>. Use for learning or your portfolio.
-        Don't use to teach. Don't claim as your own product.
+        © Copyright by
+        <a href="https://twitter.com/jonasschmedtman" class="footer__link"
+          >Jonas Schmedtmann</a
+        >
       </p>
     </footer>
   </body>
