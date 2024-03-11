@@ -22,3 +22,20 @@ const defaultOpacity = () => {
   });
 };
 
+const smoothScroll = (event) => {
+  event.preventDefault();
+  const targetId = event.target.getAttribute("href");
+  document.querySelector(targetId).scrollIntoView({ behavior: "smooth" });
+};
+
+navLinks.forEach((link) => {
+  link.addEventListener("mouseover", (event) => {
+    changeOpacity(event.target);
+  });
+
+  link.addEventListener("mouseout", () => {
+    defaultOpacity();
+  });
+
+  link.addEventListener("click", smoothScroll);
+});
