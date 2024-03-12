@@ -39,3 +39,34 @@ navLinks.forEach((link) => {
 
   link.addEventListener("click", smoothScroll);
 });
+
+
+/*Lazy Loading Images*/
+
+let lazyImages = document.querySelectorAll(".features__img");
+
+const handleIntersection = (entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      let image = entry.target;
+      image.src = image.getAttribute("data-src");
+      image.classList.remove("lazy-img");
+      imageObserver.unobserve(image);
+    }
+  });
+};
+
+let observerOptions = {
+  root: null,
+  rootMargin: "0px",
+  threshold: 0.7,
+};
+
+let imageObserver = new IntersectionObserver(
+  handleIntersection,
+  observerOptions
+);
+
+lazyImages.forEach((image) => {
+  imageObserver.observe(image);
+});

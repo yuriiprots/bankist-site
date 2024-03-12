@@ -80,8 +80,9 @@ body {
 .nav__link {
   font-size: 1.2rem;
   color: inherit;
+  opacity: 1;
   text-decoration: none;
-  transition: color 0.3s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
 }
 
 .nav__btn {
@@ -210,6 +211,15 @@ body {
 
 .features__img {
   width: 100%;
+  height: auto;
+}
+
+.lazy-img{
+  filter: blur(20px);
+}
+
+img {
+  transition: filter 0.5s;
 }
 
 .features__feature {
@@ -327,14 +337,14 @@ body {
 
 .operations__content--active {
   display: grid;
-  grid-template-columns: 3rem 1fr; /*5rem 7rem*/
-  column-gap: 1rem; /*2rem 3rem*/
-  row-gap: 0.2rem; /*0.3rem 0.5rem*/
+  grid-template-columns: 3rem 1fr; 
+  column-gap: 1rem; 
+  row-gap: 0.2rem; 
 }
 
 .operations__content {
-  font-size: 1.2rem; /*1.4rem 1.6rem*/
-  padding: 1.5rem 2.5rem 4.5rem 3rem; /*2rem 3rem 5.5rem 4rem | 2.5rem 7rem 6.5rem 7rem*/
+  font-size: 1.2rem; 
+  padding: 1.5rem 2.5rem 4.5rem 3rem; 
 }
 
 .operations__content--2 {
