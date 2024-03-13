@@ -174,8 +174,17 @@ body {
 /*-----------------SECTIONS-----------------*/
 
 .section {
-  padding: 5rem 1.5rem; /*10rem 2rem , 15rem 3rem*/
+  padding: 5rem 1.5rem;
   border-top: 1px solid #ddd;
+
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+}
+
+.section--active {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .section__title {
@@ -396,21 +405,35 @@ img {
 /*-------------------SLIDER--------------------*/
 .slider {
   max-width: 80rem;
-  height: 40rem;
+  height: 45rem;
   margin: 0 auto;
   position: relative;
   overflow: hidden;
 }
+
 .slide {
   position: absolute;
   top: 0;
   width: 100%;
-  height: 40rem; /*... 50rem*/
+  height: 45rem; /*... 50rem*/
   display: flex;
   align-items: center;
   justify-content: center;
   transition: transform 1s;
 }
+
+.slide--1 {
+  transform: translateX(0%);
+}
+
+.slide--2 {
+  transform: translateX(100%);
+}
+
+.slide--3 {
+  transform: translateX(200%);
+}
+
 .testimonial {
   width: 65%;
   position: relative;
@@ -433,6 +456,7 @@ img {
   font-weight: 500;
   margin-bottom: 1rem;
 }
+
 .testimonials__text {
   font-size: 1.2rem; /*1.4rem 1.6rem*/
   margin-bottom: 1.5rem;
@@ -487,6 +511,7 @@ img {
   right: 8%;
   transform: translate(50%, -50%);
 }
+
 .dots {
   position: absolute;
   bottom: 1%;
@@ -561,6 +586,91 @@ img {
 .footer__copyright {
   font-size: 1.2rem;
   color: #aaa;
+}
+
+/*---------------Modal---------------*/
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+
+  background-color: #f3f3f3;
+  max-width: 60rem;
+  padding: 2rem 3rem;
+
+  border-radius: 1rem;
+  box-shadow: 0 4rem 6rem rgba(0, 0, 0, 0.3);
+
+  transform: translate(-50%, -50%);
+  transition: all 0.5s;
+
+  z-index: 200;
+}
+
+.modal-header {
+  font-size: 2rem;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+.btn--close-modal {
+  position: absolute;
+  top: 0.5rem;
+  right: 2rem;
+  font-size: 3rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: #333;
+}
+
+.modal__form {
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.modal__form--label {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.modal__form--input {
+  font-size: 1rem;
+  padding: 1rem 1.5rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  background-color: #fff;
+}
+
+.modal__form--button {
+  grid-column: 1 / span 2;
+  justify-self: center;
+  margin-top: 1rem;
+  font-size: 1.5rem;
+}
+
+/*-----------------Overlay----------------*/
+.modal-overlay {
+  position: fixed;
+  opacity: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(4px);
+  background-color: rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+  z-index: 150;
+}
+
+.modal-overlay--active {
+  opacity: 1;
+  pointer-events: all;
 }
 
 /* ----------------TABLET SCREEN----------------------*/
@@ -838,6 +948,39 @@ img {
     margin: 1.5rem auto;
     height: 4rem;
   }
+
+  /*-----------------MODAL----------------------*/
+
+  .modal {
+    padding: 4rem 5rem;
+  }
+
+  .modal-header {
+    font-size: 3.25rem;
+    line-height: 1.5;
+    margin-bottom: 3.5rem;
+  }
+
+  .btn--close-modal {
+    font-size: 3rem;
+  }
+
+  .modal__form {
+    margin: 0 2rem;
+    gap: 2.5rem;
+  }
+
+  .modal__form--label {
+    font-size: 1.6rem;
+  }
+
+  .modal__form--input {
+    font-size: 1.6rem;
+  }
+
+  .modal__form--button {
+    font-size: 1.6rem;
+  }
 }
 
 /*-----------------DESKTOP SCREEN ----------------------*/
@@ -1054,5 +1197,32 @@ img {
   .footer__logo {
     margin: 2rem auto;
     height: 5rem;
+  }
+
+  .modal-header {
+    font-size: 3.25rem;
+    margin-bottom: 4.5rem;
+  }
+
+  /*-----------------MODAL----------------------*/
+
+  .btn--close-modal {
+    font-size: 4rem;
+  }
+  .modal__form {
+    margin: 0 3rem;
+    gap: 2.5rem;
+  }
+
+  .modal__form--label {
+    font-size: 1.7rem;
+  }
+
+  .modal__form--input {
+    font-size: 1.7rem;
+  }
+
+  .modal__form--button {
+    font-size: 1.7rem;
   }
 }

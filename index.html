@@ -26,7 +26,7 @@
               <a href="#section--3" class="nav__link">Testimonials</a>
             </li>
             <li class="nav__item">
-              <button class="nav__btn">Open account</button>
+              <button class="nav__btn btn__open-modal">Open account</button>
             </li>
           </ul>
         </nav>
@@ -277,9 +277,9 @@
         <button class="slider__btn slider__btn--right">→</button>
 
         <div class="dots">
-          <button class="dots__dot dots__dot--active"></button>
-          <button class="dots__dot"></button>
-          <button class="dots__dot"></button>
+          <button class="dots__dot dots__dot--active" data-slide="0"></button>
+          <button class="dots__dot" data-slide="1"></button>
+          <button class="dots__dot" data-slide="2"></button>
         </div>
       </div>
     </section>
@@ -291,7 +291,7 @@
           today!
         </h3>
       </div>
-      <button class="btn btn__open-account">
+      <button class="btn btn__open-account btn__open-modal">
         Open your free account today!
       </button>
     </section>
@@ -324,6 +324,48 @@
         >
       </p>
     </footer>
+
+
+    <div class="modal">
+      <h2 class="modal-header">
+        Open your bank account <br />
+        in just <span class="highlight">5 minutes</span>
+      </h2>
+      <span class="btn--close-modal">&times;</span>
+
+      <form class="modal__form">
+        <label class="modal__form--label" for="firstName">First Name</label>
+        <input
+          class="modal__form--input"
+          type="text"
+          id="firstName"
+          name="firstName"
+          required
+        />
+
+        <label class="modal__form--label" for="lastName">Last Name</label>
+        <input
+          class="modal__form--input"
+          type="text"
+          id="lastName"
+          name="lastName"
+          required
+        />
+
+        <label class="modal__form--label" for="email">Email Address</label>
+        <input
+          class="modal__form--input"
+          type="email"
+          id="email"
+          name="email"
+          required
+        />
+        <button class="btn modal__form--button" type="submit">Next step →</button>
+      </form>
+    </div>
+
+    <div class="modal-overlay"></div>
+
     <script src="script.js"></script>
   </body>
 </html>

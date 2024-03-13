@@ -1,8 +1,37 @@
 const headerTop = document.querySelector(".header__top");
 const navLinks = document.querySelectorAll(".nav__link");
+const btnScrollTo = document.querySelector(".btn__scroll-to");
+
+const openAccountBtns = document.querySelectorAll(".btn__open-modal");
+const modal = document.querySelector(".modal");
+const closeModalBtn = document.querySelector(".btn--close-modal");
+
+const modalOverlay = document.querySelector(".modal-overlay");
+
+btnScrollTo.addEventListener("click", () => {
+  document.querySelector("#section--1").scrollIntoView({ behavior: "smooth" });
+});
+
+const openModal = () => {
+  modal.style.display = "block";
+  modalOverlay.classList.add("modal-overlay--active");
+};
+
+const closeModal = () => {
+  modalOverlay.classList.remove("modal-overlay--active");
+  modal.style.display = "none";
+};
+
+openAccountBtns.forEach((openAccountBtn) => {
+  openAccountBtn.addEventListener("click", openModal);
+});
+
+closeModalBtn.addEventListener("click", closeModal);
+
+modalOverlay.addEventListener("click", closeModal);
+
 const operationsTabs = document.querySelectorAll(".operations__tab");
 const operationsContentDivs = document.querySelectorAll(".operations__content");
-
 const slides = document.querySelectorAll(".slide");
 const slideFirst = document.querySelector(".slide--1");
 const slideSecond = document.querySelector(".slide--2");
@@ -84,6 +113,34 @@ lazyImages.forEach((image) => {
 
 /* ---------- */
 
+const handleSectionIntersection = (entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      let section = entry.target;
+      section.classList.add("section--active");
+      sectionObserver.unobserve(section);
+    }
+  });
+};
+
+const observerSectionOptions = {
+  root: null,
+  rootMargin: "0px",
+  threshold: 0.2,
+};
+
+let sectionObserver = new IntersectionObserver(
+  handleSectionIntersection,
+  observerSectionOptions
+);
+
+const sections = document.querySelectorAll(".section");
+
+sections.forEach((section) => {
+  sectionObserver.observe(section);
+});
+
+/* ---------- */
 const deactiveAllTabs = () => {
   operationsTabs.forEach((operationsTabs) =>
     operationsTabs.classList.remove("operations__tab--active")
@@ -134,9 +191,7 @@ const showSlide = (index) => {
     slides[slideIndex + 1].style.transform = `translateX(${100}%)`;
   }
 
-  dots.forEach((dot) => {
-    dot.classList.remove("dots__dot--active");
-  });
+  dots.forEach((dot) => dot.classList.remove("dots__dot--active"));
   dots[slideIndex].classList.add("dots__dot--active");
 };
 
@@ -152,3 +207,10 @@ const nextSlide = () => {
 
 sliderBtnLeft.addEventListener("click", prevSlide);
 sliderBtnRight.addEventListener("click", nextSlide);
+
+dots.forEach((dot) => {
+  dot.addEventListener("click", () => {
+    slideIndex = parseInt(dot.dataset.slide);
+    showSlide(slideIndex);
+  });
+});
