@@ -8,6 +8,22 @@ const closeModalBtn = document.querySelector(".btn--close-modal");
 
 const modalOverlay = document.querySelector(".modal-overlay");
 
+const sections = document.querySelectorAll(".section");
+
+const operationsTabs = document.querySelectorAll(".operations__tab");
+const operationsContentDivs = document.querySelectorAll(".operations__content");
+const slides = document.querySelectorAll(".slide");
+const slideFirst = document.querySelector(".slide--1");
+const slideSecond = document.querySelector(".slide--2");
+const slideThird = document.querySelector(".slide--3");
+
+const dots = document.querySelectorAll(".dots__dot");
+
+const sliderBtnLeft = document.querySelector(".slider__btn--left");
+const sliderBtnRight = document.querySelector(".slider__btn--right");
+
+const lazyImages = document.querySelectorAll(".features__img");
+
 btnScrollTo.addEventListener("click", () => {
   document.querySelector("#section--1").scrollIntoView({ behavior: "smooth" });
 });
@@ -27,20 +43,7 @@ openAccountBtns.forEach((openAccountBtn) => {
 });
 
 closeModalBtn.addEventListener("click", closeModal);
-
 modalOverlay.addEventListener("click", closeModal);
-
-const operationsTabs = document.querySelectorAll(".operations__tab");
-const operationsContentDivs = document.querySelectorAll(".operations__content");
-const slides = document.querySelectorAll(".slide");
-const slideFirst = document.querySelector(".slide--1");
-const slideSecond = document.querySelector(".slide--2");
-const slideThird = document.querySelector(".slide--3");
-
-const dots = document.querySelectorAll(".dots__dot");
-
-const sliderBtnLeft = document.querySelector(".slider__btn--left");
-const sliderBtnRight = document.querySelector(".slider__btn--right");
 
 window.addEventListener("scroll", () => {
   if (window.scrollY > 550) {
@@ -83,8 +86,6 @@ navLinks.forEach((link) => {
 
 /*Lazy Loading Images*/
 
-let lazyImages = document.querySelectorAll(".features__img");
-
 const handleIntersection = (entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
@@ -96,13 +97,13 @@ const handleIntersection = (entries) => {
   });
 };
 
-let observerOptions = {
+const observerOptions = {
   root: null,
   rootMargin: "0px",
   threshold: 0.7,
 };
 
-let imageObserver = new IntersectionObserver(
+const imageObserver = new IntersectionObserver(
   handleIntersection,
   observerOptions
 );
@@ -133,8 +134,6 @@ let sectionObserver = new IntersectionObserver(
   handleSectionIntersection,
   observerSectionOptions
 );
-
-const sections = document.querySelectorAll(".section");
 
 sections.forEach((section) => {
   sectionObserver.observe(section);
