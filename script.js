@@ -24,9 +24,7 @@ const sliderBtnRight = document.querySelector(".slider__btn--right");
 
 const lazyImages = document.querySelectorAll(".features__img");
 
-btnScrollTo.addEventListener("click", () => {
-  document.querySelector("#section--1").scrollIntoView({ behavior: "smooth" });
-});
+// ---------------Modal window-----------------
 
 const openModal = () => {
   modal.style.display = "block";
@@ -45,6 +43,8 @@ openAccountBtns.forEach((openAccountBtn) => {
 closeModalBtn.addEventListener("click", closeModal);
 modalOverlay.addEventListener("click", closeModal);
 
+// --------------Sticky header-----------------
+
 window.addEventListener("scroll", () => {
   if (window.scrollY > 550) {
     headerTop.classList.add("header__top--active");
@@ -53,11 +53,12 @@ window.addEventListener("scroll", () => {
   }
 });
 
-const changeOpacity = (link) => {
+// ---------------Change opacity on hover-----------------
+const changeOpacity = (targetLink) => {
   navLinks.forEach((link) => {
     link.style.opacity = 0.5;
   });
-  link.style.opacity = 1;
+  targetLink.style.opacity = 1;
 };
 
 const defaultOpacity = () => {
@@ -66,9 +67,10 @@ const defaultOpacity = () => {
   });
 };
 
-const smoothScroll = (event) => {
-  event.preventDefault();
-  const targetId = event.target.getAttribute("href");
+// ---------------Smooth scrolling-----------------
+
+const smoothScroll = (e) => {
+  const targetId = e.target.getAttribute("href");
   document.querySelector(targetId).scrollIntoView({ behavior: "smooth" });
 };
 
@@ -80,8 +82,18 @@ navLinks.forEach((link) => {
   link.addEventListener("mouseout", () => {
     defaultOpacity();
   });
+  
+});
 
-  link.addEventListener("click", smoothScroll);
+btnScrollTo.addEventListener("click", () => {
+  document.querySelector("#section--1").scrollIntoView({ behavior: "smooth" });
+});
+
+document.querySelector(".nav__list").addEventListener("click", function (e) {
+  e.preventDefault();
+  if (e.target.classList.contains("nav__link")) {
+    smoothScroll(e);
+  }
 });
 
 /*Lazy Loading Images*/
@@ -139,7 +151,7 @@ sections.forEach((section) => {
   sectionObserver.observe(section);
 });
 
-/* ---------- */
+/* ---------------Tabbed component-----------------*/
 const deactiveAllTabs = () => {
   operationsTabs.forEach((operationsTabs) =>
     operationsTabs.classList.remove("operations__tab--active")
@@ -168,7 +180,7 @@ operationsTabs.forEach((operationsTab) => {
   );
 });
 
-/* ---------- */
+/* --------------------SLIDER------------------------------ */
 
 let slideIndex = 0;
 const totalSlides = document.querySelectorAll(".slide").length;
@@ -213,3 +225,19 @@ dots.forEach((dot) => {
     showSlide(slideIndex);
   });
 });
+
+//-----------------------------------------------
+
+// const randomInt = (min, max) =>
+//   Math.floor(Math.random() * (max - min + 1) + min);
+
+// const randomColor = () =>
+//   `rgb(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)})`;
+
+// document.querySelector(".nav__link").addEventListener("click", function (e) {
+//   this.style.backgroundColor = randomColor();
+// });
+
+// document.querySelector(".nav__list").addEventListener("click", function (e) {
+//   this.style.backgroundColor = randomColor();
+// });
