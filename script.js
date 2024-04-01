@@ -10,8 +10,12 @@ const modalOverlay = document.querySelector(".modal-overlay");
 
 const sections = document.querySelectorAll(".section");
 
+const operationsTabsContainer = document.querySelector(
+  ".operations__tab-container"
+);
 const operationsTabs = document.querySelectorAll(".operations__tab");
 const operationsContentDivs = document.querySelectorAll(".operations__content");
+
 const slides = document.querySelectorAll(".slide");
 const slideFirst = document.querySelector(".slide--1");
 const slideSecond = document.querySelector(".slide--2");
@@ -82,7 +86,6 @@ navLinks.forEach((link) => {
   link.addEventListener("mouseout", () => {
     defaultOpacity();
   });
-  
 });
 
 btnScrollTo.addEventListener("click", () => {
@@ -151,33 +154,33 @@ sections.forEach((section) => {
   sectionObserver.observe(section);
 });
 
-/* ---------------Tabbed component-----------------*/
-const deactiveAllTabs = () => {
-  operationsTabs.forEach((operationsTabs) =>
-    operationsTabs.classList.remove("operations__tab--active")
+/* ---------------------------TABBED COMPONENT-----------------------------*/
+const disableAllTabsAndContent = () => {
+  operationsTabs.forEach((operationsTab) =>
+    operationsTab.classList.remove("operations__tab--active")
   );
   operationsContentDivs.forEach((operationsContentDiv) =>
     operationsContentDiv.classList.remove("operations__content--active")
   );
 };
 
-const addActiveTab = (clickedTab) => {
+const addActiveTabAndContent = (clickedTab) => {
   clickedTab.classList.add("operations__tab--active");
-
-  const contentIndex = parseInt(clickedTab.classList[2].split("--")[1]) - 1;
-  operationsContentDivs[contentIndex].classList.add(
-    "operations__content--active"
-  );
+  
+  document
+    .querySelector(`.operations__content--${clickedTab.dataset.tab}`)
+    .classList.add("operations__tab--active");
 };
+
 const handleOperationsTabsClick = (clickedTab) => {
-  deactiveAllTabs();
-  addActiveTab(clickedTab);
+  disableAllTabsAndContent();
+  addActiveTabAndContent(clickedTab);
 };
 
-operationsTabs.forEach((operationsTab) => {
-  operationsTab.addEventListener("click", () =>
-    handleOperationsTabsClick(operationsTab)
-  );
+operationsTabsContainer.addEventListener("click", (e) => {
+  const clicked = e.target.closest(".operations__tab");
+  if (!clicked) return;
+  handleOperationsTabsClick(clicked);
 });
 
 /* --------------------SLIDER------------------------------ */
