@@ -1,5 +1,3 @@
-const headerTop = document.querySelector(".header__top");
-
 const navLinks = document.querySelectorAll(".nav__link");
 const btnScrollTo = document.querySelector(".btn__scroll-to");
 
@@ -29,6 +27,32 @@ const sliderBtnRight = document.querySelector(".slider__btn--right");
 
 const lazyImages = document.querySelectorAll(".features__img");
 
+/* ---------------------- STICKY NAV ------------------------*/
+
+const header = document.querySelector(".header");
+const headerTop = document.querySelector(".header__top");
+const headerTopHeight = headerTop.getBoundingClientRect().height;
+
+const observerHeaderTopOptions = {
+  root: null,
+  threshold: 0,
+  rootMargin: `-${headerTopHeight}px`,
+};
+
+const stickyNav = (entries) => {
+  entries.forEach((entry) => {
+    if (!entry.isIntersecting) headerTop.classList.add("header__top--active");
+    else headerTop.classList.remove("header__top--active");
+  });
+};
+
+const headerObserver = new IntersectionObserver(
+  stickyNav,
+  observerHeaderTopOptions
+);
+
+headerObserver.observe(header);
+
 
 /* ---------------- CHANGE OPACITY OF HOVER NAV LINKS ------------------------*/
 
@@ -45,7 +69,6 @@ const handleHover = function (e) {
 
 navList.addEventListener("mouseover", handleHover.bind(0.5));
 navList.addEventListener("mouseout", handleHover.bind(1));
-
 
 /* ---------------- MODAL WINDOW AND OVERLAY ------------------------*/
 
@@ -66,20 +89,9 @@ openAccountBtns.forEach((openAccountBtn) => {
 closeModalBtn.addEventListener("click", closeModal);
 modalOverlay.addEventListener("click", closeModal);
 
-// --------------Sticky header-----------------
-
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 550) {
-    headerTop.classList.add("header__top--active");
-  } else {
-    headerTop.classList.remove("header__top--active");
-  }
-});
-
-
-
-
 // ---------------Smooth scrolling-----------------
+
+const section1 = document.querySelector("#section--1");
 
 const smoothScroll = (e) => {
   const targetId = e.target.getAttribute("href");
@@ -87,7 +99,7 @@ const smoothScroll = (e) => {
 };
 
 btnScrollTo.addEventListener("click", () => {
-  document.querySelector("#section--1").scrollIntoView({ behavior: "smooth" });
+  section1.scrollIntoView({ behavior: "smooth" });
 });
 
 document.querySelector(".nav__list").addEventListener("click", function (e) {
@@ -110,7 +122,7 @@ const handleIntersection = (entries) => {
   });
 };
 
-const observerOptions = {
+const observerImagesOptions = {
   root: null,
   rootMargin: "0px",
   threshold: 0.7,
@@ -118,7 +130,7 @@ const observerOptions = {
 
 const imageObserver = new IntersectionObserver(
   handleIntersection,
-  observerOptions
+  observerImagesOptions
 );
 
 lazyImages.forEach((image) => {
