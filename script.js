@@ -1,4 +1,5 @@
 const headerTop = document.querySelector(".header__top");
+
 const navLinks = document.querySelectorAll(".nav__link");
 const btnScrollTo = document.querySelector(".btn__scroll-to");
 
@@ -28,7 +29,25 @@ const sliderBtnRight = document.querySelector(".slider__btn--right");
 
 const lazyImages = document.querySelectorAll(".features__img");
 
-// ---------------Modal window-----------------
+
+/* ---------------- CHANGE OPACITY OF HOVER NAV LINKS ------------------------*/
+
+const navList = document.querySelector(".nav__list");
+
+const handleHover = function (e) {
+  if (e.target.classList.contains("nav__link")) {
+    const targetLink = e.target;
+    navLinks.forEach((link) => {
+      if (link !== targetLink) link.style.opacity = this;
+    });
+  }
+};
+
+navList.addEventListener("mouseover", handleHover.bind(0.5));
+navList.addEventListener("mouseout", handleHover.bind(1));
+
+
+/* ---------------- MODAL WINDOW AND OVERLAY ------------------------*/
 
 const openModal = () => {
   modal.style.display = "block";
@@ -57,19 +76,8 @@ window.addEventListener("scroll", () => {
   }
 });
 
-// ---------------Change opacity on hover-----------------
-const changeOpacity = (targetLink) => {
-  navLinks.forEach((link) => {
-    link.style.opacity = 0.5;
-  });
-  targetLink.style.opacity = 1;
-};
 
-const defaultOpacity = () => {
-  navLinks.forEach((link) => {
-    link.style.opacity = 1;
-  });
-};
+
 
 // ---------------Smooth scrolling-----------------
 
@@ -77,16 +85,6 @@ const smoothScroll = (e) => {
   const targetId = e.target.getAttribute("href");
   document.querySelector(targetId).scrollIntoView({ behavior: "smooth" });
 };
-
-navLinks.forEach((link) => {
-  link.addEventListener("mouseover", (event) => {
-    changeOpacity(event.target);
-  });
-
-  link.addEventListener("mouseout", () => {
-    defaultOpacity();
-  });
-});
 
 btnScrollTo.addEventListener("click", () => {
   document.querySelector("#section--1").scrollIntoView({ behavior: "smooth" });
@@ -154,7 +152,7 @@ sections.forEach((section) => {
   sectionObserver.observe(section);
 });
 
-/* ---------------------------TABBED COMPONENT-----------------------------*/
+/* --------------------------- TABBED COMPONENT -----------------------------*/
 const disableAllTabsAndContent = () => {
   operationsTabs.forEach((operationsTab) =>
     operationsTab.classList.remove("operations__tab--active")
@@ -166,7 +164,7 @@ const disableAllTabsAndContent = () => {
 
 const addActiveTabAndContent = (clickedTab) => {
   clickedTab.classList.add("operations__tab--active");
-  
+
   document
     .querySelector(`.operations__content--${clickedTab.dataset.tab}`)
     .classList.add("operations__tab--active");
