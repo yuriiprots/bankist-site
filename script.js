@@ -89,33 +89,29 @@ document.querySelector(".nav__list").addEventListener("click", function (e) {
 
 /* ---------------------- LAZY LOADING IMAGES ------------------------*/
 
-const lazyImages = document.querySelectorAll(".features__img");
+const lazyImages = document.querySelectorAll("img[data-src]");
 
-const handleIntersection = (entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      let image = entry.target;
-      image.src = image.getAttribute("data-src");
-      image.classList.remove("lazy-img");
-      imageObserver.unobserve(image);
-    }
+const loadImage = (entries) => {
+  const [entry] = entries;
+  if (!entry.isIntersecting) return;
+  entry.target.src = entry.target.dataset.src;
+  entry.target.addEventListener("load", () => {
+    entry.target.classList.remove("lazy-img");
   });
+  imageObserver.unobserve(entry.target);
 };
 
 const observerImagesOptions = {
   root: null,
-  rootMargin: "0px",
   threshold: 0.7,
 };
 
 const imageObserver = new IntersectionObserver(
-  handleIntersection,
+  loadImage,
   observerImagesOptions
 );
 
-lazyImages.forEach((image) => {
-  imageObserver.observe(image);
-});
+lazyImages.forEach((image) => imageObserver.observe(image));
 
 /*-------------------- EFFECT OF THE SECTIONS THAT APPEAR -------------------- */
 
@@ -138,9 +134,7 @@ let sectionObserver = new IntersectionObserver(
   observerSectionOptions
 );
 
-sections.forEach((section) => {
-  sectionObserver.observe(section);
-});
+sections.forEach((section) => sectionObserver.observe(section));
 
 /* --------------------------- TABBED COMPONENT -----------------------------*/
 
@@ -178,7 +172,7 @@ operationsTabsContainer.addEventListener("click", (e) => {
   handleOperationsTabsClick(clicked);
 });
 
-/* --------------------SLIDER------------------------------ */
+/* ------------------------------ SLIDER ------------------------------ */
 
 const slides = document.querySelectorAll(".slide");
 const slideFirst = document.querySelector(".slide--1");
