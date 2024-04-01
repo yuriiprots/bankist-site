@@ -178,7 +178,7 @@ body {
   border-top: 1px solid #ddd;
 
   opacity: 0;
-  transform: translateY(50px);
+  transform: translateY(80px);
   transition: opacity 1s ease-in-out, transform 1s ease-in-out;
 }
 

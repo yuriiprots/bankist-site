@@ -1,32 +1,3 @@
-const navLinks = document.querySelectorAll(".nav__link");
-const btnScrollTo = document.querySelector(".btn__scroll-to");
-
-const openAccountBtns = document.querySelectorAll(".btn__open-modal");
-const modal = document.querySelector(".modal");
-const closeModalBtn = document.querySelector(".btn--close-modal");
-
-const modalOverlay = document.querySelector(".modal-overlay");
-
-const sections = document.querySelectorAll(".section");
-
-const operationsTabsContainer = document.querySelector(
-  ".operations__tab-container"
-);
-const operationsTabs = document.querySelectorAll(".operations__tab");
-const operationsContentDivs = document.querySelectorAll(".operations__content");
-
-const slides = document.querySelectorAll(".slide");
-const slideFirst = document.querySelector(".slide--1");
-const slideSecond = document.querySelector(".slide--2");
-const slideThird = document.querySelector(".slide--3");
-
-const dots = document.querySelectorAll(".dots__dot");
-
-const sliderBtnLeft = document.querySelector(".slider__btn--left");
-const sliderBtnRight = document.querySelector(".slider__btn--right");
-
-const lazyImages = document.querySelectorAll(".features__img");
-
 /* ---------------------- STICKY NAV ------------------------*/
 
 const header = document.querySelector(".header");
@@ -53,10 +24,10 @@ const headerObserver = new IntersectionObserver(
 
 headerObserver.observe(header);
 
-
 /* ---------------- CHANGE OPACITY OF HOVER NAV LINKS ------------------------*/
 
 const navList = document.querySelector(".nav__list");
+const navLinks = document.querySelectorAll(".nav__link");
 
 const handleHover = function (e) {
   if (e.target.classList.contains("nav__link")) {
@@ -70,16 +41,22 @@ const handleHover = function (e) {
 navList.addEventListener("mouseover", handleHover.bind(0.5));
 navList.addEventListener("mouseout", handleHover.bind(1));
 
-/* ---------------- MODAL WINDOW AND OVERLAY ------------------------*/
+/* ---------------------- MODAL WINDOW AND OVERLAY ------------------------*/
+
+const openAccountBtns = document.querySelectorAll(".btn__open-modal");
+const closeModalBtn = document.querySelector(".btn--close-modal");
+
+const modal = document.querySelector(".modal");
+const overlay = document.querySelector(".modal-overlay");
 
 const openModal = () => {
   modal.style.display = "block";
-  modalOverlay.classList.add("modal-overlay--active");
+  overlay.classList.add("modal-overlay--active");
 };
 
 const closeModal = () => {
-  modalOverlay.classList.remove("modal-overlay--active");
   modal.style.display = "none";
+  overlay.classList.remove("modal-overlay--active");
 };
 
 openAccountBtns.forEach((openAccountBtn) => {
@@ -87,10 +64,11 @@ openAccountBtns.forEach((openAccountBtn) => {
 });
 
 closeModalBtn.addEventListener("click", closeModal);
-modalOverlay.addEventListener("click", closeModal);
+overlay.addEventListener("click", closeModal);
 
-// ---------------Smooth scrolling-----------------
+/* ---------------------- SMOOTH SCROLLING ------------------------*/
 
+const btnScrollTo = document.querySelector(".btn__scroll-to");
 const section1 = document.querySelector("#section--1");
 
 const smoothScroll = (e) => {
@@ -109,7 +87,9 @@ document.querySelector(".nav__list").addEventListener("click", function (e) {
   }
 });
 
-/*Lazy Loading Images*/
+/* ---------------------- LAZY LOADING IMAGES ------------------------*/
+
+const lazyImages = document.querySelectorAll(".features__img");
 
 const handleIntersection = (entries) => {
   entries.forEach((entry) => {
@@ -137,26 +117,24 @@ lazyImages.forEach((image) => {
   imageObserver.observe(image);
 });
 
-/* ---------- */
+/*-------------------- EFFECT OF THE SECTIONS THAT APPEAR -------------------- */
 
-const handleSectionIntersection = (entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      let section = entry.target;
-      section.classList.add("section--active");
-      sectionObserver.unobserve(section);
-    }
-  });
+const sections = document.querySelectorAll(".section");
+
+const appearSection = (entries) => {
+  const [entry] = entries;
+  if (!entry.isIntersecting) return;
+  entry.target.classList.add("section--active");
+  sectionObserver.unobserve(entry.target);
 };
 
 const observerSectionOptions = {
   root: null,
-  rootMargin: "0px",
   threshold: 0.2,
 };
 
 let sectionObserver = new IntersectionObserver(
-  handleSectionIntersection,
+  appearSection,
   observerSectionOptions
 );
 
@@ -165,6 +143,13 @@ sections.forEach((section) => {
 });
 
 /* --------------------------- TABBED COMPONENT -----------------------------*/
+
+const operationsTabsContainer = document.querySelector(
+  ".operations__tab-container"
+);
+const operationsTabs = document.querySelectorAll(".operations__tab");
+const operationsContentDivs = document.querySelectorAll(".operations__content");
+
 const disableAllTabsAndContent = () => {
   operationsTabs.forEach((operationsTab) =>
     operationsTab.classList.remove("operations__tab--active")
@@ -179,7 +164,7 @@ const addActiveTabAndContent = (clickedTab) => {
 
   document
     .querySelector(`.operations__content--${clickedTab.dataset.tab}`)
-    .classList.add("operations__tab--active");
+    .classList.add("operations__content--active");
 };
 
 const handleOperationsTabsClick = (clickedTab) => {
@@ -194,6 +179,14 @@ operationsTabsContainer.addEventListener("click", (e) => {
 });
 
 /* --------------------SLIDER------------------------------ */
+
+const slides = document.querySelectorAll(".slide");
+const slideFirst = document.querySelector(".slide--1");
+const slideSecond = document.querySelector(".slide--2");
+const slideThird = document.querySelector(".slide--3");
+const sliderBtnLeft = document.querySelector(".slider__btn--left");
+const sliderBtnRight = document.querySelector(".slider__btn--right");
+const dots = document.querySelectorAll(".dots__dot");
 
 let slideIndex = 0;
 const totalSlides = document.querySelectorAll(".slide").length;
@@ -238,19 +231,3 @@ dots.forEach((dot) => {
     showSlide(slideIndex);
   });
 });
-
-//-----------------------------------------------
-
-// const randomInt = (min, max) =>
-//   Math.floor(Math.random() * (max - min + 1) + min);
-
-// const randomColor = () =>
-//   `rgb(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)})`;
-
-// document.querySelector(".nav__link").addEventListener("click", function (e) {
-//   this.style.backgroundColor = randomColor();
-// });
-
-// document.querySelector(".nav__list").addEventListener("click", function (e) {
-//   this.style.backgroundColor = randomColor();
-// });
