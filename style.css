@@ -422,18 +422,6 @@ img {
   transition: transform 1s;
 }
 
-.slide--1 {
-  transform: translateX(0%);
-}
-
-.slide--2 {
-  transform: translateX(100%);
-}
-
-.slide--3 {
-  transform: translateX(200%);
-}
-
 .testimonial {
   width: 65%;
   position: relative;

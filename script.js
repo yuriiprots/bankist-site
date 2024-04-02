@@ -175,53 +175,72 @@ operationsTabsContainer.addEventListener("click", (e) => {
 /* ------------------------------ SLIDER ------------------------------ */
 
 const slides = document.querySelectorAll(".slide");
-const slideFirst = document.querySelector(".slide--1");
-const slideSecond = document.querySelector(".slide--2");
-const slideThird = document.querySelector(".slide--3");
 const sliderBtnLeft = document.querySelector(".slider__btn--left");
 const sliderBtnRight = document.querySelector(".slider__btn--right");
-const dots = document.querySelectorAll(".dots__dot");
+const dotsContainer = document.querySelector(".dots");
 
-let slideIndex = 0;
-const totalSlides = document.querySelectorAll(".slide").length;
+let currentSlide = 0;
+const totalSlides = slides.length;
 
-const showSlide = (index) => {
-  if (index >= totalSlides || index === 0) {
-    slideIndex = 0;
-    slides[slideIndex].style.transform = `translateX(${0}%)`;
-    slides[slideIndex + 1].style.transform = `translateX(${100}%)`;
-    slides[slideIndex + 2].style.transform = `translateX(${200}%)`;
-  } else if (index < 0 || index === 2) {
-    slideIndex = totalSlides - 1;
-    slides[slideIndex - 2].style.transform = `translateX(-${200}%)`;
-    slides[slideIndex - 1].style.transform = `translateX(-${100}%)`;
-    slides[slideIndex].style.transform = `translateX(${0}%)`;
-  } else if (index === 1) {
-    slides[slideIndex - 1].style.transform = `translateX(-${100}%)`;
-    slides[slideIndex].style.transform = `translateX(${0}%)`;
-    slides[slideIndex + 1].style.transform = `translateX(${100}%)`;
+const createDots = () => {
+  for (let i = 0; i < totalSlides; i++) {
+    dotsContainer.insertAdjacentHTML(
+      "beforeend",
+      `<button class="dots__dot" data-slide="${i}"></button>`
+    );
   }
+};
 
-  dots.forEach((dot) => dot.classList.remove("dots__dot--active"));
-  dots[slideIndex].classList.add("dots__dot--active");
+const activateDot = (slideIndex) => {
+  document
+    .querySelectorAll(".dots__dot")
+    .forEach((dot) => dot.classList.remove("dots__dot--active"));
+  document
+    .querySelector(`.dots__dot[data-slide="${slideIndex}"]`)
+    .classList.add("dots__dot--active");
+};
+
+const goToSlide = (slideIndex) => {
+  slides.forEach(
+    (slide, i) =>
+      (slide.style.transform = `translateX(${100 * (i - slideIndex)}%)`)
+  );
+  activateDot(slideIndex);
+};
+
+(() => {
+  createDots();
+  goToSlide(currentSlide);
+})();
+
+const nextSlide = () => {
+  if (currentSlide === totalSlides - 1) {
+    currentSlide = 0;
+  } else {
+    currentSlide++;
+  }
+  goToSlide(currentSlide);
 };
 
 const prevSlide = () => {
-  slideIndex--;
-  showSlide(slideIndex);
+  if (currentSlide === 0) {
+    currentSlide = totalSlides - 1;
+  } else {
+    currentSlide--;
+  }
+  goToSlide(currentSlide);
 };
 
-const nextSlide = () => {
-  slideIndex++;
-  showSlide(slideIndex);
-};
-
-sliderBtnLeft.addEventListener("click", prevSlide);
 sliderBtnRight.addEventListener("click", nextSlide);
-
-dots.forEach((dot) => {
-  dot.addEventListener("click", () => {
-    slideIndex = parseInt(dot.dataset.slide);
-    showSlide(slideIndex);
-  });
+sliderBtnLeft.addEventListener("click", prevSlide);
+dotsContainer.addEventListener("click", (e) => {
+  if (e.target.classList.contains("dots__dot")) {
+    currentSlide = e.target.dataset.slide;
+    goToSlide(currentSlide);
+  }
 });
+document.addEventListener("keydown", (e) => {
+  if (e.key === "ArrowLeft") prevSlide();
+  else if (e.key === "ArrowRight") nextSlide();
+});
+
