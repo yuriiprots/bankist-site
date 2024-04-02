@@ -65,6 +65,15 @@ openAccountBtns.forEach((openAccountBtn) => {
 
 closeModalBtn.addEventListener("click", closeModal);
 overlay.addEventListener("click", closeModal);
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Escape" && modal.style.display === "block") {
+    closeModal();
+  }
+});
+
+window.addEventListener("beforeunload", function (e) {
+  e.preventDefault();
+});
 
 /* ---------------------- SMOOTH SCROLLING ------------------------*/
 
